@@ -12,8 +12,16 @@ class Api::MoviesController < ApplicationController
   end
 
   def create 
-    @movie = Movie.new(title: "Harry Potter and The Goblet of Fire", runtime: 3213)
+    @movie = Movie.new(title: params[:input_title], runtime: params[:input_runtime])
     @movie.save
+    render 'show.json.jbuilder'
+  end
+
+  def update
+    the_id = params[:id]
+    @movie = Movie.find_by(id: the_id)
+    #modify the movie 
+    @movie.update(title: params[:input_title], runtime: params[:input_runtime])
     render 'show.json.jbuilder'
   end
 end
