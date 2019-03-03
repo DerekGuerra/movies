@@ -24,5 +24,14 @@ class Api::MoviesController < ApplicationController
     @movie.update(title: params[:input_title], runtime: params[:input_runtime])
     render 'show.json.jbuilder'
   end
+
+  def destroy
+    #find movie ID
+    the_id = params[:id]
+    @movie = Movie.find_by(id: the_id)
+    #destroy it
+    @movie.destroy
+    render 'show.json.jbuilder'
+  end
 end
 
