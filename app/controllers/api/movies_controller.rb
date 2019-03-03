@@ -10,4 +10,11 @@ class Api::MoviesController < ApplicationController
     @movie = Movie.find_by(id: the_id)
     render 'show.json.jbuilder'
   end
+
+  def create 
+    @movie = Movie.new(title: "Harry Potter and The Goblet of Fire", runtime: 3213)
+    @movie.save
+    render 'show.json.jbuilder'
+  end
 end
+
